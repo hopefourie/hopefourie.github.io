@@ -31,6 +31,7 @@ export class Character extends Phaser.GameObjects.Sprite {
     this.setScale(scaleX / scaleY);
     guy.setGravityY(0);
     guy.setCollideWorldBounds(true);
+    guy.setCircle(200);
 
     //Method calls for creation
     this.init();

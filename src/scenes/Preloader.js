@@ -1,20 +1,23 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 
 export default class Preloader extends Phaser.Scene {
   constructor() {
-    super("preloader");
+    console.log('hello!');
+    super('preloader');
   }
 
   preload() {
-    this.load.setBaseURL("https://labs.phaser.io");
+    this.load.setBaseURL('https://labs.phaser.io');
 
-    this.load.image("sky", "assets/skies/space3.png");
-    this.load.image("logo", "assets/sprites/phaser3-logo.png");
-    this.load.image("red", "assets/particles/red.png");
-  }
-
-  start() {
-    
-    this.scene.start('start');
+    this.load.image('sky', 'assets/skies/space3.png');
+    this.load.image('logo', 'assets/sprites/phaser3-logo.png');
+    this.load.image('red', 'assets/particles/red.png');
+    this.load.image(
+      'test-sprite',
+      'http://localhost:8000/images/test-sprite.png'
+    );
+    this.load.on('complete', () => {
+      this.scene.start('start');
+    });
   }
 }

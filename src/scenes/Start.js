@@ -1,27 +1,40 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 
 export default class Start extends Phaser.Scene {
-	constructor() {
-		super('start')
-	}
+  constructor() {
+    super('start');
+  }
 
-	create() {
-		this.add.image(400, 300, 'sky')
+  create() {
+    this.cursors = this.input.keyboard.createCursorKeys();
 
-		const particles = this.add.particles('red')
+    this.add.image(400, 300, 'sky');
+    const particles = this.add.particles('red');
 
-		const emitter = particles.createEmitter({
-			speed: 100,
-			scale: { start: 1, end: 0 },
-			blendMode: 'ADD',
-		})
+    this.dude = this.physics.add.sprite(500, 500, 'test-sprite');
+    this.dude.setBounce(0.2);
+    this.dude.setCollideWorldBounds(true);
 
-		const logo = this.physics.add.image(400, 100, 'logo')
+    const emitter = particles.createEmitter({
+      speed: 100,
+      scale: { start: 1, end: 0 },
+      blendMode: 'ADD',
+    });
 
-		logo.setVelocity(100, 200)
-		logo.setBounce(1, 1)
-		logo.setCollideWorldBounds(true)
+    emitter.startFollow(this.dude);
+  }
 
-		emitter.startFollow(logo)
-	}
+  update() {
+    if (this.cursors.left.isDown) {
+      this.dude.setVelocityX(-160);
+    } else if (this.cursors.right.isDown) {
+      this.dude.setVelocityX(160);
+    } else {
+      this.dude.setVelocityX(0);
+    }
+
+    if (this.cursors.up.isDown && this.dude.body.touching.down) {
+      this.dude.setVelocityY(-330);
+    }
+  }
 }

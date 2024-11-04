@@ -1,6 +1,9 @@
 import Phaser from 'phaser'
 
-import HelloWorldScene from './HelloWorldScene'
+import Start from './scenes/Start'
+import Preloader from './scenes/Preloader'
+import End from './scenes/End'
+import Stack from './scenes/Stack'
 
 const config = {
 	type: Phaser.AUTO,
@@ -13,7 +16,7 @@ const config = {
 			gravity: { y: 200 },
 		},
 	},
-	scene: [HelloWorldScene],
+	scene: [Start, Preloader, Stack, End],
 }
 
 export default new Phaser.Game(config)

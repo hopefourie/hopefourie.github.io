@@ -11,8 +11,8 @@ export default class Stack extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(400, 300, "test-background").setScale(1 / 2);
-    this.rat = new Character(this, 400, 550, "test-sprite");
+    this.add.image(400, 300, 'test-background');
+    this.rat = new Character(this, 400, 550, 'dude');
 
     const paperStack = this.physics.add.group({ allowGravity: true });
     const fallingPapers = this.physics.add.group({ allowGravity: true });

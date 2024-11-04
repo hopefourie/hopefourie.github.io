@@ -13,6 +13,10 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('logo', 'assets/sprites/phaser3-logo.png');
     this.load.image('red', 'assets/particles/red.png');
     this.load.image(
+      'test-background',
+      'http://localhost:8000/images/test-sprite.jpg'
+    );
+    this.load.image(
       'test-sprite',
       'http://localhost:8000/images/test-sprite.png'
     );

@@ -7,6 +7,8 @@ export default class Stack extends Phaser.Scene {
 
 	create() {
 		this.add.image(400, 300, 'sky')
+        this.backBar = this.add.rectangle(200, 20, 150, 20, 0x000000).setOrigin(0);
+        this.ickBar = this.add.rectangle(203, 23, 0, 14, 0xffea00).setOrigin(0);
 
 		const particles = this.add.particles('red')
 

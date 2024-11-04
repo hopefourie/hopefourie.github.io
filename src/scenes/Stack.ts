@@ -11,7 +11,7 @@ export default class Stack extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(400, 300, 'test-background');
+    this.add.image(400, 300, 'test-background').setScale(1/2);
     this.rat = new Character(this, 400, 550, 'dude');
 
     let ickCount = 0

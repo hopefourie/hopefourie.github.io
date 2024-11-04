@@ -11,9 +11,11 @@ export default class Stack extends Phaser.Scene {
 
   create() {
     this.add.image(400, 300, 'test-background');
-    this.rat = new Character(this, 400, 550, 'test-sprite');
+    this.rat = new Character(this, 400, 550, 'dude');
 
-    const backBar = this.add.rectangle(100, 100, 150, 20, 0x000000).setOrigin(0);
+    const backBar = this.add
+      .rectangle(100, 100, 150, 20, 0x000000)
+      .setOrigin(0);
     this.ickBar = this.add.rectangle(103, 103, 100, 14, 0xffea00).setOrigin(0);
   }
 

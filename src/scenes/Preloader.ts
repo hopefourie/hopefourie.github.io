@@ -16,10 +16,10 @@ export default class Preloader extends Phaser.Scene {
       'test-background',
       'http://localhost:8000/images/test-sprite.jpg'
     );
-    this.load.image(
-      'test-sprite',
-      'http://localhost:8000/images/test-sprite.png'
-    );
+    this.load.spritesheet('dude', 'http://localhost:8000/images/walk.png', {
+      frameWidth: 512,
+      frameHeight: 512,
+    });
     this.load.on('complete', () => {
       this.scene.start('start');
     });

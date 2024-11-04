@@ -14,13 +14,26 @@ export default class Stack extends Phaser.Scene {
     this.add.image(400, 300, 'test-background');
     this.rat = new Character(this, 400, 550, 'dude');
 
+    let ickCount = 0
+    const backBar = this.add
+      .rectangle(600, 50, 162, 20, 0x000000)
+      .setOrigin(0);
+      const shading1 = this.add.rectangle(603, 53, 50, 14, 0x616161).setOrigin(0);
+      const shading2 = this.add.rectangle(656, 53, 50, 14, 0x616161).setOrigin(0);
+      const shading3 = this.add.rectangle(709, 53, 50, 14, 0x616161).setOrigin(0);
+
+
+    this.ickBar = this.add.rectangle(603, 53, 0, 14, 0xffea00).setOrigin(0);
+
     const paperStack = this.physics.add.group({ allowGravity: true });
-    const fallingPapers = this.physics.add.group({ allowGravity: true });
-    fallingPapers.add(new Faller(this, 150, -100, "test-paper", 1, 20), true);
+    const goodProposals = this.physics.add.group({ allowGravity: true });
+    goodProposals.add(new Faller(this, 150, -100, "test-paper", 1, 20), true).setTint(0xad6369);
+    const badProposals = this.physics.add.group({ allowGravity: true });
+    badProposals.add(new Faller(this, 350, -100, "test-paper", 1, 20), true).setTint(0x63ad64);
 
     this.physics.add.overlap(
       this.rat,
-      fallingPapers,
+      goodProposals,
       (rat, paper) => {
         paper.destroy();
       },
@@ -28,10 +41,24 @@ export default class Stack extends Phaser.Scene {
       this
     );
 
-    const backBar = this.add
-      .rectangle(100, 100, 150, 20, 0x000000)
-      .setOrigin(0);
-    this.ickBar = this.add.rectangle(103, 103, 100, 14, 0xffea00).setOrigin(0);
+    this.physics.add.overlap(
+      this.rat,
+      badProposals,
+      (rat, paper) => {
+        paper.destroy();
+        if (ickCount<2){
+          this.ickBar.width += 50
+          ickCount++
+        } else {
+          this.scene.pause("stack");
+		      this.scene.launch("end");
+        }
+      },
+      undefined,
+      this
+    );
+
+    
   }
 
   update() {

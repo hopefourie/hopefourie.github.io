@@ -8,7 +8,7 @@ export class Faller extends Phaser.GameObjects.Sprite {
     y: number,
     texture: string,
     scaleX: number = 1,
-    scaleY: number = 2
+    scaleY: number = 2,
   ) {
     super(scene, x, y, texture);
 

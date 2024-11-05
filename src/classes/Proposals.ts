@@ -43,7 +43,7 @@ export class Proposals extends Phaser.Physics.Arcade.Group {
     }
   }
 
-  onCreate(item) {
+  onCreate(item: Proposal) {
     const num = Phaser.Math.RND.between(0, 100);
     const type = num >= 50 ? ProposalType.Good : ProposalType.Bad;
     item.onCreate(type);

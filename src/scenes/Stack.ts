@@ -7,6 +7,7 @@ import { Proposal } from '../classes/Proposal';
 import Particles from '../classes/Particles';
 import GameStore from '../stores/GameStore';
 import Score from '../classes/Score';
+import Timer from '../classes/Timer';
 export default class Stack extends Phaser.Scene {
   rat: Character | undefined;
   ickBar: GameObjects.Rectangle;
@@ -16,6 +17,8 @@ export default class Stack extends Phaser.Scene {
   proposals: Proposals;
   particles: Particles;
   score: Score | undefined;
+  timer: Timer | undefined;
+  unsubscribe: () => void;
   constructor() {
     super('stack');
   }
@@ -30,11 +33,13 @@ export default class Stack extends Phaser.Scene {
     const shading2 = this.add.rectangle(656, 53, 50, 14, 0x616161).setOrigin(0);
     const shading3 = this.add.rectangle(709, 53, 50, 14, 0x616161).setOrigin(0);
     this.ickBar = this.add.rectangle(603, 53, 0, 14, 0xffea00).setOrigin(0);
-    GameStore.subscribe(state => {
+    this.unsubscribe = GameStore.subscribe(state => {
       this.ickCount = state.ickCount;
     });
     this.createProposals();
     this.score = new Score(this, 40, 40);
+    this.timer = new Timer(this, 350, 40, this.endLevel.bind(this));
+    this.events.on('destroy', () => this.unsubscribe());
   }
 
   createProposals() {
@@ -81,8 +86,14 @@ export default class Stack extends Phaser.Scene {
 
   update() {
     this.rat?.update();
+    this.timer?.update();
     this.collectedPapers.forEach((element, index) => {
       element.setPosition(this.rat?.getBounds().centerX, 400 - 5 * index);
     });
+  }
+
+  endLevel() {
+    this.scene.pause('stack');
+    this.scene.launch('level-end');
   }
 }

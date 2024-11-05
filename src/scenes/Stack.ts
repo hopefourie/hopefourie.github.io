@@ -4,13 +4,16 @@ import { Faller } from '../classes/Faller';
 import { Stacker } from '../classes/Stacker';
 import { Proposals, ProposalType } from '../classes/Proposals';
 import { Proposal } from '../classes/Proposal';
+import Particles from '../classes/Particles';
 
 export default class Stack extends Phaser.Scene {
   rat: Character | undefined;
   ickBar: GameObjects.Rectangle;
+  ickBarOutline: GameObjects.Rectangle;
   ickCount: number;
   collectedPapers: any[] = [];
   proposals: Proposals;
+  particles: Particles;
   constructor() {
     super('stack');
   }
@@ -18,14 +21,14 @@ export default class Stack extends Phaser.Scene {
   create() {
     this.add.image(400, 300, 'test-background').setScale(1 / 2);
     this.rat = new Character(this, 400, 550, 'dude');
-
+    this.particles = new Particles(this, 'red');
     this.ickCount = 0;
     const backBar = this.add.rectangle(600, 50, 162, 20, 0x000000).setOrigin(0);
     const shading1 = this.add.rectangle(603, 53, 50, 14, 0x616161).setOrigin(0);
     const shading2 = this.add.rectangle(656, 53, 50, 14, 0x616161).setOrigin(0);
     const shading3 = this.add.rectangle(709, 53, 50, 14, 0x616161).setOrigin(0);
-
     this.ickBar = this.add.rectangle(603, 53, 0, 14, 0xffea00).setOrigin(0);
+
     this.createProposals();
   }
 
@@ -53,10 +56,11 @@ export default class Stack extends Phaser.Scene {
         this.collectedPapers.push(proposal);
         proposal.stack();
         if (proposal.proposalType == ProposalType.Bad) {
-          if (this.ickCount < 2) {
-            this.ickBar.width += 50;
-            this.ickCount++;
-          } else {
+          this.particles.spawnAt(rat.body.center.x, rat.body.center.y);
+          this.rat?.damage();
+          this.ickBar.width += 50 + 2 * this.ickCount;
+          this.ickCount++;
+          if (this.ickCount > 2) {
             this.scene.pause('stack');
             this.scene.launch('end');
           }

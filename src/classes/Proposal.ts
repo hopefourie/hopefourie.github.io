@@ -11,8 +11,8 @@ export class Proposal extends Phaser.Physics.Arcade.Image {
   onCreate(proposalType: ProposalType) {
     this.proposalType = proposalType;
     this.proposalType === ProposalType.Good
-      ? this.setTintFill(0x63ad64)
-      : this.setTintFill(0xad6369);
+      ? this.setTint(0x63ad64)
+      : this.setTint(0xad6369);
     this.disableBody(true, true);
   }
 
@@ -22,7 +22,6 @@ export class Proposal extends Phaser.Physics.Arcade.Image {
   }
 
   onWorldBounds() {
-    console.log('hi!');
     this.disableBody(true, true);
   }
 }

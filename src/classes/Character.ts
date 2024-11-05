@@ -15,9 +15,16 @@ export class Character extends Phaser.GameObjects.Sprite {
 
     this.anims.create({
       key: 'walk',
-      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 4 }),
       frameRate: 50,
       repeat: -1,
+    });
+
+    this.anims.create({
+      key: 'ow',
+      frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 0 }),
+
+      repeat: 0,
     });
 
     // Making the homie
@@ -54,6 +61,11 @@ export class Character extends Phaser.GameObjects.Sprite {
     this.cursors.keyobj_right = this.scene.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.RIGHT
     );
+  }
+
+  damage() {
+    this.anims.stop();
+    this.anims.play('ow');
   }
 
   update() {

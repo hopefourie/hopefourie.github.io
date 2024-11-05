@@ -24,7 +24,7 @@ export class Proposals extends Phaser.Physics.Arcade.Group {
 
   start() {
     this.timedEvent = this.scene.time.addEvent({
-      delay: 750,
+      delay: Phaser.Math.RND.between(750, 2000),
       loop: true,
       callback: () => {
         const x = Phaser.Math.RND.between(0, 800);

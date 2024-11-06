@@ -43,8 +43,8 @@ export default class Stack extends Phaser.Scene {
     this.proposals.createMultiple({
       key: 'test-paper',
       setScale: {
-        x: 0.02,
-        y: 0.02,
+        x: 0.1,
+        y: 0.1,
       },
 
       quantity: 20,

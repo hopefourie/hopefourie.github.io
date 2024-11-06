@@ -6,6 +6,7 @@ export default class LevelEnd extends Phaser.Scene {
   constructor() {
     super("level-end");
   }
+  
 
   create() {
     this.add.image(400, 300, "score");

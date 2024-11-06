@@ -89,8 +89,8 @@ export default class Stack extends Phaser.Scene {
 
   endLevel() {
     if (GameStore.getState().level === 10) {
-      this.scene.stop("stack");
       this.scene.launch("win");
+      this.scene.stop("stack");
       return
     }
     GameStore.getState().incrementLevel();

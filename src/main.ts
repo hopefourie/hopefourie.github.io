@@ -6,6 +6,7 @@ import Lose from './scenes/Lose';
 import Stack from './scenes/Stack';
 import LevelEnd from './scenes/LevelEnd';
 import Instructions from './scenes/Instructions';
+import Win from './scenes/Win';
 
 const config = {
   type: Phaser.AUTO,
@@ -18,7 +19,7 @@ const config = {
       gravity: { y: 100 },
     },
   },
-  scene: [Preloader, Start, Instructions, Stack, LevelEnd, Lose],
+  scene: [Preloader, Start, Instructions, Stack, LevelEnd, Lose, Win],
 };
 
 export default new Phaser.Game(config);

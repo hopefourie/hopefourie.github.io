@@ -6,13 +6,24 @@ export default class Start extends Phaser.Scene {
   }
 
   create() {
+
+    const titleText = this.add.text(400, 160, "Scabby’s Fair \nContract Builder", { fontSize: "36px", align: "center" }).setOrigin(1/2);
+    const subtitleText = this.add.text(400, 260, "Help Scabby and the NYT \nTech Guild get a fair contract!", { fontSize: "20px", align: "center" }).setOrigin(1/2);
+
     // Start game button
-		const startButton = this.add.rectangle(400, 300, 50, 20,  0xffea00).setOrigin(0);
-    const startText = this.add.text(400, 300, "Start", { color: "#000000", fontSize: "14px" }).setOrigin(0);
+		const startButton = this.add.image(400, 380, 'start').setScale(1 / 3).setOrigin(1/2);
 		startButton.setInteractive({ useHandCursor: true });
 		startButton.on("pointerup", () => {
-		  this.scene.pause("start");
+		  this.scene.stop("start");
 		  this.scene.launch("stack");
+		});
+
+    // Instructions button
+    const instructionsButton = this.add.image(400, 440, 'instructions').setScale(1 / 3).setOrigin(1/2);
+		instructionsButton.setInteractive({ useHandCursor: true });
+		instructionsButton.on("pointerup", () => {
+		  this.scene.stop("start");
+		  this.scene.launch("instructions");
 		});
 
   }

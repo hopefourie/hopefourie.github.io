@@ -77,7 +77,7 @@ export default class Stack extends Phaser.Scene {
     this.rat?.update();
     this.timer?.update();
     this.collectedPapers.forEach((element, index) => {
-      element.setPosition(this.rat?.getBounds().centerX, 400 - 5 * index);
+      element.setPosition(this.rat?.getBounds().centerX + (Math.random()), 400 - 5 * index);
     });
   }
 

@@ -13,7 +13,7 @@ interface GameStore {
 const initialState = {
   ickCount: 0,
   score: 0,
-  level: 1,
+  level: 10,
 };
 
 const store = createStore<GameStore>(set => ({

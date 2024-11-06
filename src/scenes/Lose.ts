@@ -2,10 +2,10 @@ import Phaser from 'phaser';
 import Score from '../classes/Score';
 import GameStore from '../stores/GameStore';
 
-export default class End extends Phaser.Scene {
+export default class Lose extends Phaser.Scene {
   score: Score;
   constructor() {
-    super('end');
+    super('lose');
   }
 
   create() {

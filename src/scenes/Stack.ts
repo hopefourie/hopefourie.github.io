@@ -21,7 +21,7 @@ export default class Stack extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(400, 300, 'test-background').setScale(1 / 2);
+    this.add.image(400, 300, 'test-background').setScale(1 / 3);
     this.rat = new Character(this, 400, 550, 'dude');
     this.particles = new Particles(this, 'red');
 

@@ -5,5 +5,7 @@ export default class End extends Phaser.Scene {
     super('end');
   }
 
-  create() {}
+  create() {
+    this.add.image(400, 300, 'gameover');
+  }
 }

@@ -14,10 +14,14 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('score', '/images/score.png');
     this.load.image('gameover', '/images/gameover.png');
 
-    this.load.spritesheet('dude', 'http://localhost:8000/images/pixelrat.png', {
-      frameWidth: 512,
-      frameHeight: 512,
-    });
+    this.load.spritesheet(
+      'dude',
+      'http://localhost:8000/images/new-sprite.png',
+      {
+        frameWidth: 512,
+        frameHeight: 512,
+      }
+    );
     this.load.on('complete', () => {
       this.scene.start('start');
     });

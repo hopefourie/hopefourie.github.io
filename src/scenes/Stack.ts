@@ -43,11 +43,11 @@ export default class Stack extends Phaser.Scene {
     this.proposals.createMultiple({
       key: 'test-paper',
       setScale: {
-        x: 0.02,
-        y: 0.02,
+        x: 0.1,
+        y: 0.1,
       },
 
-      quantity: 20,
+      quantity: 20 + 5 * GameStore.getState().level,
     });
     this.proposals.start();
 
@@ -65,7 +65,7 @@ export default class Stack extends Phaser.Scene {
           GameStore.getState().incrementIck();
           if (GameStore.getState().ickCount > 2) {
             this.scene.pause('stack');
-            this.scene.launch('end');
+            this.scene.launch('lose');
           }
         } else {
           GameStore.getState().incrementScore();
@@ -88,6 +88,11 @@ export default class Stack extends Phaser.Scene {
   }
 
   endLevel() {
+    if (GameStore.getState().level === 10) {
+      this.scene.launch('win');
+      this.scene.stop('stack');
+      return;
+    }
     GameStore.getState().incrementLevel();
     this.scene.pause('stack');
     this.scene.launch('level-end');

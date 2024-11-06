@@ -26,7 +26,7 @@ export default class Lose extends Phaser.Scene {
     button.setInteractive({ useHandCursor: true });
     button.on('pointerup', () => {
       this.scene.pause('gameover');
-      this.scene.start('stack');
+      this.scene.start('start');
       GameStore.getState().reset();
     });
   }

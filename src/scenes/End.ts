@@ -20,8 +20,8 @@ export default class End extends Phaser.Scene {
         strokeThickness: 4,
       }
     );
-    const button = this.add.image(380, 350, 'playagain').setTint(0xffea00);
-    button.scale = 0.4;
+    const button = this.add.image(350, 350, 'playagain').setTint(0xffea00);
+    button.scale = 0.3;
 
     button.setInteractive({ useHandCursor: true });
     button.on('pointerup', () => {

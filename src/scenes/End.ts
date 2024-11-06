@@ -14,7 +14,7 @@ export default class End extends Phaser.Scene {
     const text = this.add.text(
       250,
       200,
-      `Oh no!! It looks like your contract proposal included\ntoo many loopholes and bad proposals.\n\nWe know what we’re worth - help Scabby\ntry again to reach a TA. `,
+      `Oh no!! It looks like your contract proposal included\ntoo many loopholes and bad proposals.\n\nWe know what we’re worth - help Scabby\ntry again to reach a Tentative Agreement. `,
       {
         stroke: '#000000',
         strokeThickness: 4,

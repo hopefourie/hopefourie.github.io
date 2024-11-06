@@ -27,7 +27,7 @@ export default class Preloader extends Phaser.Scene {
       }
     );
     this.load.on('complete', () => {
-      this.scene.start('win');
+      this.scene.start('start');
     });
   }
 }

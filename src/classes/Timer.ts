@@ -3,8 +3,9 @@ export default class Timer {
   timedEvent: Phaser.Time.TimerEvent;
   text: Phaser.GameObjects.Text;
   constructor(scene: Phaser.Scene, x: number, y: number, onEnd: () => void) {
+    const level = GameStore.getState().level;
     this.timedEvent = scene.time.delayedCall(
-      10000,
+      5000 + 5000 * level,
       () => {
         onEnd();
       },
@@ -12,9 +13,10 @@ export default class Timer {
       this
     );
     this.text = scene.add.text(x, y, '00:30', {
-      fontFamily: 'Arial',
       fontSize: '32px',
       color: '#ffffff',
+      strokeThickness: 4,
+      stroke: '#000000',
     });
   }
 

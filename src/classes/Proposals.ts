@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { Proposal } from './Proposal';
+import GameStore from '../stores/GameStore';
 
 export enum ProposalType {
   Good = 'Good',
@@ -23,13 +24,17 @@ export class Proposals extends Phaser.Physics.Arcade.Group {
   }
 
   start() {
+    const level = GameStore.getState().level;
     this.timedEvent = this.scene.time.addEvent({
-      delay: Phaser.Math.RND.between(750, 2000),
+      delay: Phaser.Math.RND.between(
+        Math.max(0, 750 - 50 * level),
+        Math.max(100, 2000 - 50 * level)
+      ),
       loop: true,
       callback: () => {
         const x = Phaser.Math.RND.between(0, 800);
         const y = Phaser.Math.RND.between(0, 0);
-        const velocity = Phaser.Math.RND.between(0, 100);
+        const velocity = Phaser.Math.RND.between(0, 100 + 10 * level);
         this.fire(x, y, 0, velocity);
       },
     });

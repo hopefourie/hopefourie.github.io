@@ -4,9 +4,10 @@ export default class Score extends Phaser.GameObjects.Text {
   unsubscribe: () => void;
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, `Score: 0`, {
-      fontFamily: 'Arial',
       fontSize: '32px',
       color: '#ffffff',
+      strokeThickness: 4,
+      stroke: '#000000',
     });
     this.score = GameStore.getState().score;
     this.setText(`Score: ${this.score}`);

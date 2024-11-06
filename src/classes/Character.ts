@@ -13,12 +13,12 @@ export class Character extends Phaser.GameObjects.Sprite {
   ) {
     super(scene, x, y, texture);
 
-    // this.anims.create({
-    //   key: 'walk',
-    //   frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 4 }),
-    //   frameRate: 50,
-    //   repeat: -1,
-    // });
+    this.anims.create({
+      key: 'walk',
+      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 2 }),
+      frameRate: 5,
+      repeat: -1,
+    });
 
     // this.anims.create({
     //   key: 'ow',
@@ -72,7 +72,7 @@ export class Character extends Phaser.GameObjects.Sprite {
     let guy = <Phaser.Physics.Arcade.Body>this.body;
     // Move Left
     if (this.cursors.keyobj_left.isDown) {
-      // this.anims.play('walk', true);
+      this.anims.play('walk', true);
       guy.setVelocityX(-200);
       if (!this.facingLeft) {
         this.flipX = !this.flipX;
@@ -80,7 +80,7 @@ export class Character extends Phaser.GameObjects.Sprite {
       }
       // Move Right
     } else if (this.cursors.keyobj_right.isDown) {
-      // this.anims.play('walk', true);
+      this.anims.play('walk', true);
       guy.setVelocityX(200);
       if (this.facingLeft) {
         this.flipX = !this.flipX;
@@ -90,7 +90,7 @@ export class Character extends Phaser.GameObjects.Sprite {
     } else {
       guy.setVelocityX(0);
       guy.setVelocityY(0);
-      // this.anims.stop();
+      this.anims.stop();
     }
   }
 }

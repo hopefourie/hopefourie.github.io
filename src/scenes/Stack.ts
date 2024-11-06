@@ -23,8 +23,9 @@ export default class Stack extends Phaser.Scene {
   create() {
     this.add.image(400, 300, 'test-background').setScale(1 / 3);
     this.rat = new Character(this, 400, 550, 'dude');
+    this.rat.setDepth(2);
     this.particles = new Particles(this, 'red');
-
+    this.collectedPapers = [];
     this.createProposals();
     this.score = new Score(this, 40, 40);
     this.timer = new Timer(this, 350, 40, this.endLevel.bind(this));
@@ -37,6 +38,7 @@ export default class Stack extends Phaser.Scene {
     this.proposals = this.add.existing(
       new Proposals(this.physics.world, this, { name: 'proposals' })
     );
+    this.proposals.setDepth(-1);
 
     this.proposals.createMultiple({
       key: 'test-paper',
@@ -44,6 +46,7 @@ export default class Stack extends Phaser.Scene {
         x: 0.02,
         y: 0.02,
       },
+
       quantity: 20,
     });
     this.proposals.start();
@@ -77,11 +80,15 @@ export default class Stack extends Phaser.Scene {
     this.rat?.update();
     this.timer?.update();
     this.collectedPapers.forEach((element, index) => {
-      element.setPosition(this.rat?.getBounds().centerX, 400 - 5 * index);
+      element.setPosition(
+        this.rat?.getBounds().centerX + (this.rat?.facingLeft ? -30 : 30),
+        420 - 5 * index
+      );
     });
   }
 
   endLevel() {
+    GameStore.getState().incrementLevel();
     this.scene.pause('stack');
     this.scene.launch('level-end');
   }

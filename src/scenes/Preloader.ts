@@ -13,7 +13,7 @@ export default class Preloader extends Phaser.Scene {
     this.load.image('red', '/images/red.png');
     this.load.image('score', '/images/score.png');
     this.load.image('gameover', '/images/gameover.png');
-
+    this.load.image('playagain', '/images/playagain.png');
     this.load.spritesheet(
       'dude',
       'http://localhost:8000/images/new-sprite.png',
